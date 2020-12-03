@@ -1,11 +1,9 @@
 import math
-trees = [[x == '#' for x in l if x in '.#'] for l in open('input')]
+trees = [[x == '#' for x in l.rstrip('\n')] for l in open('input')]
 
 def tree_for_slope(x, y):
     num_trees = 0
-    for i in range(1, len(trees)):
-        if x * i >= len(trees):
-            break
+    for i in range(1, len(trees) // x):
         if trees[x * i][(y*i) % len(trees[0])]:
             num_trees += 1
     return num_trees
