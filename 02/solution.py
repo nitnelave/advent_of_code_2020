@@ -3,19 +3,12 @@ import re
 valid_passwords_range = 0
 valid_passwords_pos = 0
 
-for l in open('input'):
-    m = re.match(r"(\d+)-(\d+) (.): (.*)", l)
-    if m is None:
-        print(f"No match: {l}")
-        continue
-    lower, upper, letter, password = m.groups()
-    lower = int(lower)
-    upper = int(upper)
+for line in open('input'):
+    lower, upper, letter, password = re.match(r"(\d+)-(\d+) (.): (.*)", line).groups()
+    lower, upper = int(lower), int(upper)
     cnt = password.count(letter)
-    if cnt >= lower and cnt <= upper:
-        valid_passwords_range += 1
-    if (password[lower - 1] == letter) ^ (password[upper - 1] == letter):
-        valid_passwords_pos += 1
+    valid_passwords_range += (cnt >= lower and cnt <= upper)
+    valid_passwords_pos += ((password[lower - 1] == letter) ^ (password[upper - 1] == letter))
 
 print(valid_passwords_range)
 print(valid_passwords_pos)
