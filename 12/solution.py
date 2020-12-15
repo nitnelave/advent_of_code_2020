@@ -13,7 +13,7 @@ def get_rotation(angle):
             90: [[0, 1], [-1, 0]],
             180: [[-1, 0], [0, -1]],
             270: [[0, -1], [1, 0]],
-            }[((angle % 360) + 360) % 360])
+            }[angle % 360])
 
 def get_direction(axis):
     return np.array({
