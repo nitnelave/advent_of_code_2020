@@ -9,12 +9,8 @@ def compute_turn(numbers, target_turn):
     last_number = numbers[-1]
     for i in range(len(numbers) - 1, target_turn - 1):
         prev = last_mention[last_number]
-        if prev == -1:
-            next_number = 0
-        else:
-            next_number = i - prev
         last_mention[last_number] = i
-        last_number = next_number
+        last_number = 0 if prev == -1 else i - prev
     return last_number
 
 print(compute_turn(numbers, 2020))
